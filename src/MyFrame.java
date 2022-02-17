@@ -1,22 +1,33 @@
-import javax.swing.BoxLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class MyFrame extends JFrame {
+
     public MyFrame() {
-        setSize(350, 400); // w, h
+        this(500, 500);
     }
 
     public MyFrame(int x, int y) {
+        setTitle("MyFrame");
         setSize(x, y);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x버튼 클릭시 main 종료
+        setBackground(Color.lightGray);
+        setLayout(new FlowLayout());
+        setLocation(700, 300);
 
-        JPanel panel = (JPanel) getContentPane();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
+        // 윈도우 창 종료 리스너
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
         setVisible(true);
+        setResizable(true);
     }
+
 }
